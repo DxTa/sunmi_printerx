@@ -1,0 +1,48 @@
+group 'com.example.sunmi_printerx'
+version '1.0'
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.1.1'
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 32
+
+    defaultConfig {
+        minSdkVersion 21
+    }
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    sourceSets {
+        main {
+            assets {
+                srcDirs 'src/main/assets'
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core:1.9.0'
+    implementation 'com.sunmi:printerx:1.0.13'
+
+}
