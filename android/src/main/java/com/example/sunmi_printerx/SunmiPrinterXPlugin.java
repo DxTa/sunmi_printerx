@@ -70,7 +70,11 @@ public class SunmiPrinterXPlugin implements FlutterPlugin, MethodCallHandler {
                 try {
                     LineApi api = selectPrinter.lineApi();
                     api.initLine(BaseStyle.getStyle());
-                    api.printText("Test Printer X", TextStyle.getStyle());
+                    api.printText("Test Printer X 1", TextStyle.getStyle());
+                    api.printText("Test Printer X 2", TextStyle.getStyle());
+                    api.printText("Test Printer X 3", TextStyle.getStyle());
+                    api.printText("Test Printer X 4 ", TextStyle.getStyle());
+                    api.printText("Test Printer X 5 ", TextStyle.getStyle());
                     api.autoOut();
                 } catch (SdkException e) {
                     e.printStackTrace();

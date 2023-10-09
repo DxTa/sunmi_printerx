@@ -19,7 +19,10 @@ dependencies:
     sdk: flutter
   sunmi_printerx:
     path: ../
-
+  sunmi_print_library:
+    git:
+      url: https://github.com/DxTa/sunmi_printer_library.git
+      ref: 2d282e876393191176be50efeb0f5e6aae68905d
   cupertino_icons: ^1.0.2
 
 dev_dependencies:

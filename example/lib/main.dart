@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:sunmi_print_library/sunmi_printer.dart';
 import 'package:sunmi_printerx/sunmi_printerx.dart';
 
 void main() {
@@ -27,7 +28,73 @@ class HomePrinterView extends StatelessWidget {
                 onPressed: () async {
                   await SunmiPrinterX.cut();
                 },
-                child: const Text("Test Cut"),
+                child: const Text("Test Cut Lib 3"),
+              ),
+            ),
+            SizedBox(height: 32,),
+            Center(
+              child: ElevatedButton(
+                // in table
+                onPressed: () async {
+                  await SunmiPrinter.bindPrinterService();
+                  await SunmiPrinter.initPrinter();
+                  await SunmiPrinter.startTransactionPrint();
+                  await SunmiPrinter.printTable(size: 21, cols: [
+                    ColumnMaker(text: 'Name', width: 10, align: 0),
+                    ColumnMaker(text: 'Qty', width: 6, align: 1),
+                    ColumnMaker(text: 'UN', width: 10, align: 2),
+                    ColumnMaker(text: 'TOT', width: 10, align: 2),
+                  ]);
+                  await SunmiPrinter.printTable(cols: [
+                    ColumnMaker(text: 'Fries', width: 10, align: 0),
+                    ColumnMaker(text: '4x', width: 6, align: 1),
+                    ColumnMaker(text: '3.00', width: 10, align: 2),
+                    ColumnMaker(text: '12.00', width: 10, align: 2),
+                  ]);
+                  await SunmiPrinter.printTable(size: 20, cols: [
+                    ColumnMaker(text: 'Sản phẩm Ahq', width: 20, align: 0),
+                    // ColumnMaker(text: '4x', width: 6, align: 1),
+                    ColumnMaker(text: '120.00000', width: 10, align: 2),
+                  ]);
+                  //await SunmiPrinter.initPrinterExam();
+                  await SunmiPrinter.lineWrap(3);
+                  await SunmiPrinter.feedPaper();
+                  final result = await SunmiPrinter.exitTransactionPrint();
+                  print("Result print: " + result);
+                  await SunmiPrinter.unbindPrinterService();
+                },
+                child: const Text("Test Cut lib 2"),
+              ),
+            ),
+            Center(
+              child: ElevatedButton(
+                onPressed: () async {
+                  await SunmiPrinter.bindPrinterService();
+                  await SunmiPrinter.initPrinter();
+                  await SunmiPrinter.startTransactionPrint();
+                  await SunmiPrinter.printTable(size: 21, cols: [
+                    ColumnMaker(text: 'Name', width: 10, align: 0),
+                    ColumnMaker(text: 'Qty', width: 6, align: 1),
+                    ColumnMaker(text: 'UN', width: 10, align: 2),
+                    ColumnMaker(text: 'TOT', width: 10, align: 2),
+                  ]);
+                  await SunmiPrinter.printTable(cols: [
+                    ColumnMaker(text: 'Fries', width: 10, align: 0),
+                    ColumnMaker(text: '4x', width: 6, align: 1),
+                    ColumnMaker(text: '3.00', width: 10, align: 2),
+                    ColumnMaker(text: '12.00', width: 10, align: 2),
+                  ]);
+                  await SunmiPrinter.printTable(size: 20, cols: [
+                    ColumnMaker(text: 'Sản phẩm Ahq', width: 20, align: 0),
+                    // ColumnMaker(text: '4x', width: 6, align: 1),
+                    ColumnMaker(text: '120.00000', width: 10, align: 2),
+                  ]);
+                  final result = await SunmiPrinter.exitTransactionPrint();
+                  print("Result print: " + result);
+                  await SunmiPrinterX.cut();
+                  await SunmiPrinter.unbindPrinterService();
+                },
+                child: const Text("Test Cut lib 2 + lib 3"),
               ),
             ),
           ],
